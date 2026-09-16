@@ -1,0 +1,38 @@
+<header class="site-header">
+
+    <div class="container header-container">
+
+        <a routerLink="/" class="brand" (click)="closeMenu()">
+            JN Tech
+        </a>
+
+        <button type="button" class="menu-button" aria-label="Toggle navigation" (click)="toggleMenu()">
+
+            ☰
+
+        </button>
+
+        <nav class="navigation" [class.navigation-open]="isMenuOpen()">
+
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                (click)="closeMenu()">
+                Home
+            </a>
+
+            <a routerLink="/portfolio" routerLinkActive="active" (click)="closeMenu()">
+                Portfolio
+            </a>
+
+            <a routerLink="/articles" routerLinkActive="active" (click)="closeMenu()">
+                Articles
+            </a>
+
+            <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">
+                Contact
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>

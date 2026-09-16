@@ -1,0 +1,47 @@
+<section class="section">
+
+  <div class="container">
+
+    <div class="section-header">
+
+      <p class="section-label">
+        Skills
+      </p>
+
+      <h2>
+        Technical Skills
+      </h2>
+
+    </div>
+
+    <div class="skills-grid">
+
+      @for (group of skillGroups; track group.title) {
+
+        <article class="skill-card">
+
+          <h3>
+            {{ group.title }}
+          </h3>
+
+          <div class="skill-list">
+
+            @for (skill of group.skills; track skill) {
+
+              <span>
+                {{ skill }}
+              </span>
+
+            }
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  </div>
+
+</section>

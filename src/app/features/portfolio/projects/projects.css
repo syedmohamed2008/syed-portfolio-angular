@@ -1,0 +1,34 @@
+.project-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(300px, 1fr));
+
+  gap: 1.5rem;
+}
+
+.project-card {
+  padding: 2rem;
+
+  background: white;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: var(--radius-md);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 10px 30px rgb(15 23 42 / 0.08);
+}
+
+.technologies {
+  color: var(--primary-color);
+  font-weight: 600;
+}

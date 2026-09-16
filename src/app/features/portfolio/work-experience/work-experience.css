@@ -1,0 +1,52 @@
+.experience-section {
+  background: white;
+}
+
+.timeline {
+  position: relative;
+  max-width: 850px;
+}
+
+.timeline::before {
+  content: "";
+
+  position: absolute;
+
+  left: 7px;
+  top: 0;
+  bottom: 0;
+
+  width: 2px;
+
+  background: var(--border-color);
+}
+
+.timeline-item {
+  position: relative;
+
+  padding-left: 3rem;
+
+  padding-bottom: 2.5rem;
+}
+
+.timeline-marker {
+  position: absolute;
+
+  left: 0;
+  top: 5px;
+
+  width: 16px;
+  height: 16px;
+
+  background: var(--primary-color);
+
+  border-radius: 50%;
+}
+
+.timeline-content {
+  padding: 1.5rem;
+
+  background: var(--background-color);
+
+  border-radius: var(--radius-md);
+}

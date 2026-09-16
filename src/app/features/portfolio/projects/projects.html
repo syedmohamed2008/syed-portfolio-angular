@@ -1,0 +1,43 @@
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <p class="section-label">
+                Projects
+            </p>
+
+            <h2>
+                Featured Projects
+            </h2>
+
+        </div>
+
+        <div class="project-grid">
+
+            @for (project of projects; track project.title) {
+
+            <article class="project-card">
+
+                <h3>
+                    {{ project.title }}
+                </h3>
+
+                <p class="technologies">
+                    {{ project.technologies }}
+                </p>
+
+                <p>
+                    {{ project.description }}
+                </p>
+
+            </article>
+
+            }
+
+        </div>
+
+    </div>
+
+</section>

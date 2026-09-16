@@ -1,0 +1,13 @@
+.experience-card {
+  max-width: 850px;
+
+  padding: 2rem;
+
+  background: white;
+
+  border-left: 4px solid var(--primary-color);
+
+  border-radius: var(--radius-md);
+
+  box-shadow: 0 8px 24px rgb(15 23 42 / 0.06);
+}

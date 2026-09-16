@@ -1,0 +1,39 @@
+<section class="section expertise-section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <p class="section-label">
+                Expertise
+            </p>
+
+            <h2>
+                Core Technologies
+            </h2>
+
+        </div>
+
+        <div class="expertise-grid">
+
+            @for (item of expertiseItems; track item.title) {
+
+            <article class="expertise-card">
+
+                <h3>
+                    {{ item.title }}
+                </h3>
+
+                <p>
+                    {{ item.description }}
+                </p>
+
+            </article>
+
+            }
+
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,38 @@
+.site-footer {
+  margin-top: 4rem;
+  padding: 3rem 0 1.5rem;
+  background: var(--heading-color);
+  color: white;
+}
+
+.footer-container {
+  display: grid;
+  gap: 2rem;
+}
+
+.site-footer p {
+  color: #cbd5e1;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-links a:hover {
+  color: #93c5fd;
+}
+
+.copyright {
+  padding-top: 1.5rem;
+  border-top: 1px solid #334155;
+}
+
+@media (max-width: 768px) {
+
+  .footer-links {
+    flex-direction: column;
+  }
+
+}

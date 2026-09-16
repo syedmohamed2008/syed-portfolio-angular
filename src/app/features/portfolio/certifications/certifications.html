@@ -1,0 +1,39 @@
+<section class="section certification-section">
+
+  <div class="container">
+
+    <div class="section-header">
+
+      <p class="section-label">
+        Learning
+      </p>
+
+      <h2>
+        Certifications & Professional Growth
+      </h2>
+
+    </div>
+
+    <div class="certification-grid">
+
+      @for (item of certifications; track item.title) {
+
+        <article class="certification-card">
+
+          <h3>
+            {{ item.title }}
+          </h3>
+
+          <p>
+            {{ item.description }}
+          </p>
+
+        </article>
+
+      }
+
+    </div>
+
+  </div>
+
+</section>

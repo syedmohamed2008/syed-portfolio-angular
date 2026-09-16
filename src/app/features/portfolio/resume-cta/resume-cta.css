@@ -1,0 +1,28 @@
+.resume-section {
+  padding: 4rem 0;
+
+  background: #eff6ff;
+}
+
+.resume-container {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 2rem;
+}
+
+.resume-container h2 {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+
+  .resume-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
