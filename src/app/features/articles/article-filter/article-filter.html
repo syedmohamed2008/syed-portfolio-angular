@@ -1,0 +1,65 @@
+<div class="filter-bar">
+
+    <input type="search" placeholder="Search articles..." [(ngModel)]="search">
+
+
+    <select [(ngModel)]="categoryId" (change)="onCategoryChange()">
+
+        <option value="">
+            All Categories
+        </option>
+
+        @for (
+        category of categories();
+        track category.id
+        ) {
+
+        <option [value]="category.id">
+            {{ category.name }}
+        </option>
+
+        }
+
+    </select>
+
+
+    <select [(ngModel)]="tagId">
+
+        <option value="">
+            All Tags
+        </option>
+
+        @for (
+        tag of tags();
+        track tag.id
+        ) {
+
+        <option [value]="tag.id">
+            {{ tag.name }}
+        </option>
+
+        }
+
+    </select>
+
+
+    <select [(ngModel)]="sortOrder">
+
+        <option value="desc">
+            Newest First
+        </option>
+
+        <option value="asc">
+            Oldest First
+        </option>
+
+    </select>
+
+
+    <button type="button" class="search-button" (click)="searchArticles()">
+
+        Search
+
+    </button>
+
+</div>

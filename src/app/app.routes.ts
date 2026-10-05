@@ -21,6 +21,9 @@ import { Contact }
 import { Dashboard }
   from './features/admin/dashboard/dashboard';
 
+import { ArticleDetail }
+  from './features/articles/article-detail/article-detail';
+
 export const routes: Routes = [
 
   {
@@ -45,6 +48,14 @@ export const routes: Routes = [
       {
         path: 'contact',
         component: Contact 
+      }, 
+      {
+        path: 'articles',
+        component: ArticleList
+      },
+      {
+        path: 'articles/:slug',
+        component: ArticleDetail
       }
 
     ]
@@ -59,6 +70,13 @@ export const routes: Routes = [
         component: Dashboard
       }
     ]
-  }
+  },
+
+  {
+  path: 'articles/:slug',
+  loadComponent: () =>
+    import('./features/articles/article-detail/article-detail')
+      .then(m => m.ArticleDetail)
+}
 
 ];

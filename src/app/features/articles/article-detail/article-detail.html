@@ -1,0 +1,115 @@
+<section class="article-detail-page">
+
+    <div class="article-container">
+
+        <a routerLink="/articles" class="back-link">
+            ← Back to Articles
+        </a>
+
+
+        @if (isLoading()) {
+
+        <div class="loading">
+            Loading article...
+        </div>
+
+        }
+        @else if (errorMessage()) {
+
+        <div class="error-message">
+            {{ errorMessage() }}
+        </div>
+
+        }
+        @else if (article(); as article) {
+
+        <article>
+
+            <!-- Featured Image -->
+            @if (article.imageUrl) {
+
+            <div class="detail-image">
+
+                <img [src]="article.imageUrl" [alt]="article.title" loading="eager">
+
+            </div>
+
+            }
+
+
+            <!-- Article Header -->
+            <header class="article-header">
+
+
+                <!-- Category + Tags -->
+                <div class="article-taxonomy">
+
+                    @if (article.categoryName) {
+
+                    <span class="category-badge">
+                        {{ article.categoryName.trim() }}
+                    </span>
+
+                    }
+
+
+                    @for (tag of article.tags; track tag.id) {
+
+                    <span class="tag-badge">
+                        {{ tag.name }}
+                    </span>
+
+                    }
+
+                </div>
+
+
+                <!-- Title -->
+                <h1>
+                    {{ article.title }}
+                </h1>
+
+
+                <!-- Article Meta -->
+                <div class="article-meta">
+
+                    <span>
+                        {{ article.createdOn | date:'dd MMMM yyyy' }}
+                    </span>
+
+                    <span class="meta-separator">
+                        •
+                    </span>
+
+                    <span>
+                        {{ readingTime() }} min read
+                    </span>
+
+                    <!-- <span class="meta-separator">
+                        •
+                    </span>
+
+                    <span>
+                        {{ article.views }} views
+                    </span> -->
+
+                </div>
+
+            </header>
+
+
+            <!-- Article Content -->
+            <div class="article-content" [innerHTML]="article.content">
+            </div>
+
+        </article>
+
+        }
+
+        <a routerLink="/articles" class="back-link">
+            ← Back to Articles
+        </a>
+
+    </div>
+
+</section>

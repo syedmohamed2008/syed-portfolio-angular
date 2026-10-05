@@ -1,1 +1,59 @@
-<p>article-list works!</p>
+<section class="articles-page">
+
+    <div class="container">
+
+        <header class="page-header">
+
+            <h1>
+                Articles
+            </h1>
+
+        </header>
+
+
+        <app-category-cards [categories]="categories()" [totalArticles]="totalArticles()"
+            [selectedCategoryId]="selectedCategoryId()" (categorySelected)="selectCategory($event)">
+        </app-category-cards>
+
+
+        <app-article-filter [categories]="categories()" [tags]="tags()"
+            (categoryChanged)="onFilterCategoryChange($event)" (filterChanged)="onFilterChanged($event)">
+
+        </app-article-filter>
+
+
+        <div class="article-grid">
+
+            @for (
+            article of articles();
+            track article.id
+            ) {
+
+            <app-article-card [article]="article">
+            </app-article-card>
+
+            }
+            @empty {
+
+            <div class="no-articles">
+
+                <h3>
+                    No articles found
+                </h3>
+
+            </div>
+
+            }
+
+        </div>
+
+        @if (isLoading()) {
+
+        <div class="loading-more">
+            Loading articles...
+        </div>
+
+        }
+    </div>
+
+</section>

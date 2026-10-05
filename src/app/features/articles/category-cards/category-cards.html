@@ -1,0 +1,68 @@
+<section class="category-section">
+
+  <div class="category-header">
+
+    <h2>
+      Explore Articles
+    </h2>
+
+    <span>
+      {{ totalArticles() }}
+      published articles
+    </span>
+
+  </div>
+
+
+  <div class="category-grid">
+
+    <button type="button" class="category-card" [class.active]="selectedCategoryId() === ''"
+      (click)="selectCategory('')">
+
+      <div class="category-icon">
+        <img [src]="'/images/categories/all_category.png'" alt='All Categories' loading="lazy">
+      </div>
+
+      <span>
+        All Articles
+      </span>
+
+      <span class="count">
+        {{ totalArticles() }}
+      </span>
+
+    </button>
+
+
+    @for (category of categories(); track category.id) {
+
+    <button type="button" class="category-card" [class.active]="selectedCategoryId() === category.id"
+      (click)="selectCategory(category.id)">
+
+      <div class="category-info">
+
+        <div class="category-icon">
+
+          <img [src]="'/images/categories/' + category.slug + '.jpg'" [alt]="category.name" loading="lazy">
+
+        </div>
+
+        <span class="category-name" [title]="category.name">
+
+          {{ category.name }}
+
+        </span>
+
+      </div>
+
+      <span class="category-count">
+        {{ category.articleCount }}
+      </span>
+
+    </button>
+
+    }
+
+  </div>
+
+</section>

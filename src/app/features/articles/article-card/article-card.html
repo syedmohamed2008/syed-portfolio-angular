@@ -1,0 +1,92 @@
+<article class="article-card">
+
+  <a [routerLink]="['/articles', article().slug]" class="article-card-link"
+    [attr.aria-label]="'Read ' + article().title">
+
+
+    <div [class]="coverClass()">
+
+      @if (isNewArticle()) {
+
+      <span class="badge-new">
+        ✦ NEW ARTICLE
+      </span>
+
+      }
+
+      <div class="cover-art">
+
+        <strong>
+          {{ article().title }}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="article-body">
+
+      <div class="article-meta">
+
+        <time>
+          {{ article().createdOn | date:'dd MMMM yyyy' }}
+        </time>
+
+        <span class="dot"></span>
+
+        <span>
+          {{ article().readingTime }} min read
+        </span>
+
+      </div>
+
+
+      @if (article().categoryName) {
+
+      <div class="article-category">
+        {{ article().categoryName?.trim() }}
+      </div>
+
+      }
+
+
+      <h2 class="article-title">
+        {{ article().title }}
+      </h2>
+
+
+      <p class="article-description">
+        {{ summary() }}
+      </p>
+
+
+      <div class="article-bottom">
+
+        <span class="read-article">
+          Read article →
+        </span>
+
+
+        <div class="article-tags">
+
+          @for (
+          tag of article().tags;
+          track tag.id
+          ) {
+
+          <span>
+            {{ tag.name }}
+          </span>
+
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </a>
+
+</article>
