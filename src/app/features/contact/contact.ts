@@ -14,12 +14,14 @@ import {
   ContactService
 } from '../../core/services/contact';
 
+import { ExternalLink } from '../../shared/directives/external-link';
+import { HoverHighlight } from '../../shared/directives/hover-highlight';
 
 @Component({
   selector: 'app-contact',
 
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule, ExternalLink, HoverHighlight
   ],
 
   templateUrl: './contact.html',

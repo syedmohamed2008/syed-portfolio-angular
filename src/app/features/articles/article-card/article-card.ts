@@ -8,13 +8,15 @@ import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 import { Article } from '../../../core/models/article';
+import { ArticleSummaryPipe } from '../../../shared/pipes/article-summary';
 
 @Component({
   selector: 'app-article-card',
 
   imports: [
     RouterLink,
-    DatePipe
+    DatePipe, 
+    ArticleSummaryPipe
   ],
 
   templateUrl: './article-card.html',
@@ -40,29 +42,6 @@ export class ArticleCard {
       difference / (1000 * 60 * 60 * 24);
 
     return days <= 7;
-
-  });
-
-
-  summary = computed(() => {
-
-    const content =
-      this.article().content ?? '';
-
-    // Remove HTML tags
-    const div =
-      document.createElement('div');
-
-    div.innerHTML = content;
-
-    const plainText =
-      (div.textContent ?? '')
-        .replace(/\s+/g, ' ')
-        .trim();
-
-    return plainText.length > 150
-      ? plainText.substring(0, 150).trim() + '...'
-      : plainText;
 
   });
 

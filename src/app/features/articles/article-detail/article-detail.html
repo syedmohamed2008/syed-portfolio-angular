@@ -106,6 +106,34 @@
 
         }
 
+        @if (relatedArticles$ | async; as relatedArticles) {
+
+        @if (relatedArticles.length > 0) {
+
+        <section class="related-articles">
+
+            <h2>Related Articles</h2>
+
+            <div class="related-articles-grid">
+
+                @for (
+                relatedArticle of relatedArticles;
+                track relatedArticle.id
+                ) {
+
+                <app-article-card [article]="relatedArticle">
+                </app-article-card>
+
+                }
+
+            </div>
+
+        </section>
+
+        }
+
+        }
+        <br>
         <a routerLink="/articles" class="back-link">
             ← Back to Articles
         </a>

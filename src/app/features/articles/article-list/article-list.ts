@@ -7,6 +7,11 @@ import {
   signal
 } from '@angular/core';
 
+import {
+  FormControl,
+  ReactiveFormsModule
+} from '@angular/forms';
+
 import { Article } from '../../../core/models/article';
 import { Category } from '../../../core/models/category';
 import { Tag } from '../../../core/models/tag';
@@ -25,17 +30,18 @@ import { ArticleFilter } from '../article-filter/article-filter';
   imports: [
     CategoryCards,
     ArticleFilter,
-    ArticleCard
+    ArticleCard,
   ],
 
   templateUrl: './article-list.html',
   styleUrl: './article-list.css'
 })
-export class ArticleList implements OnInit {
+export class ArticleList implements OnInit  {
 
   private readonly articleService =
     inject(ArticleService);
 
+   
   private readonly categoryService =
     inject(CategoryService);
 
@@ -82,18 +88,16 @@ isLoading = signal(false);
 
   );
 
-
   ngOnInit(): void {
 
-    this.loadCategories();
+  this.loadCategories();
 
-    this.loadTags();
+  this.loadTags();
 
-    this.loadArticles();
+  this.loadArticles();
 
-  }
-
-
+}
+ 
   loadCategories(): void {
 
     this.categoryService
@@ -141,6 +145,11 @@ onFilterChanged(filter: {
   sortOrder: string;
 }): void {
 
+  console.log(
+    'Parent received filter:',
+    filter
+  );
+
   this.search.set(filter.search);
 
   this.selectedCategoryId.set(
@@ -155,14 +164,11 @@ onFilterChanged(filter: {
     filter.sortOrder
   );
 
-  // New search always starts from page 1
   this.currentPage.set(1);
 
-  // Remove previous articles
   this.articles.set([]);
 
   this.loadArticles();
-
 }
 
 loadTags(categoryId?: string): void {
@@ -292,16 +298,26 @@ onWindowScroll(): void {
 }
 
 
-  selectCategory(
-    categoryId: string
-  ): void {
+selectCategory(
+  categoryId: string
+): void {
 
-    this.selectedCategoryId.set(
-      categoryId
-    );
+  this.selectedCategoryId.set(
+    categoryId
+  );
 
-    this.loadArticles();
+  this.selectedTagId.set('');
 
-  }
+  this.currentPage.set(1);
+
+  this.articles.set([]);
+
+  this.loadTags(
+    categoryId || undefined
+  );
+
+  this.loadArticles();
+
+}
 
 }

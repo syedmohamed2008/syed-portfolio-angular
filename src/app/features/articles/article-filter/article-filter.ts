@@ -1,25 +1,59 @@
 import {
   Component,
+  DestroyRef,
+  inject,
   input,
+  OnInit,
   output
 } from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
 
-import { Category } from '../../../core/models/category';
-import { Tag } from '../../../core/models/tag';
+import {
+  debounceTime,
+  distinctUntilChanged
+} from 'rxjs/operators';
+
+import {
+  takeUntilDestroyed
+} from '@angular/core/rxjs-interop';
+
+import {
+  Category
+} from '../../../core/models/category';
+
+import {
+  Tag
+} from '../../../core/models/tag';
+
 
 @Component({
   selector: 'app-article-filter',
-  imports: [FormsModule],
+
+  imports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
+
   templateUrl: './article-filter.html',
   styleUrl: './article-filter.css'
 })
-export class ArticleFilter {
+export class ArticleFilter implements OnInit {
 
-  categories = input.required<Category[]>();
+  private readonly destroyRef =
+    inject(DestroyRef);
 
-  tags = input.required<Tag[]>();
+
+  categories =
+    input.required<Category[]>();
+
+  tags =
+    input.required<Tag[]>();
+
 
   filterChanged = output<{
     search: string;
@@ -28,9 +62,16 @@ export class ArticleFilter {
     sortOrder: string;
   }>();
 
-  categoryChanged = output<string>();
 
-  search = '';
+  categoryChanged =
+    output<string>();
+
+
+  searchControl =
+    new FormControl('', {
+      nonNullable: true
+    });
+
 
   categoryId = '';
 
@@ -38,22 +79,59 @@ export class ArticleFilter {
 
   sortOrder = 'desc';
 
+
+  ngOnInit(): void {
+
+    this.searchControl.valueChanges
+      .pipe(
+
+        debounceTime(400),
+
+        distinctUntilChanged(),
+
+        takeUntilDestroyed(
+          this.destroyRef
+        )
+
+      )
+      .subscribe(search => {
+
+        this.emitFilter(
+          search.trim()
+        );
+
+      });
+
+  }
+
+
   onCategoryChange(): void {
 
-  // Previous tag may not belong to new category
-  this.tagId = '';
+    this.tagId = '';
 
-  this.categoryChanged.emit(
-    this.categoryId
-  );
-}
+    this.categoryChanged.emit(
+      this.categoryId
+    );
+
+  }
 
 
   searchArticles(): void {
 
+    this.emitFilter(
+      this.searchControl.value.trim()
+    );
+
+  }
+
+
+  private emitFilter(
+    search: string
+  ): void {
+
     this.filterChanged.emit({
 
-      search: this.search,
+      search: search,
 
       categoryId: this.categoryId,
 

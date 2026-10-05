@@ -11,7 +11,8 @@ export const API_CONFIG = {
     categories: '/articles/categories',
     tags: '/articles/tags', 
     articleBySlug: '/articles/slug',
-     contact: '/contact/messages'
+    contact: '/contact/messages',
+    relatedArticles: '/articles/related',
   }
 
 };

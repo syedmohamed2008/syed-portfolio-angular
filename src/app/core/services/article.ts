@@ -71,5 +71,22 @@ getArticleBySlug(slug: string): Observable<Article> {
 
 }
 
+ getRelatedArticles(
+    categoryId: string,
+    articleId: string
+  ): Observable<Article[]> {
+
+    const params = new HttpParams()
+      .set('categoryId', categoryId)
+      .set('articleId', articleId);
+
+    return this.http.get<Article[]>(
+      `${API_CONFIG.baseUrl}${API_CONFIG.endpoints.relatedArticles}`,
+      { params }
+    );
+  }
+
+  
+
 
 }

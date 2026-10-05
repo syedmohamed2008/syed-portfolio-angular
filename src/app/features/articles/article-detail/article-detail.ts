@@ -11,9 +11,9 @@ import {
   RouterLink
 } from '@angular/router';
 
-import {
-  DatePipe
-} from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
+import { ArticleCard } from '../article-card/article-card';
+import { Observable, of, distinctUntilChanged, map } from 'rxjs';
 
 import Prism from 'prismjs';
 
@@ -29,14 +29,18 @@ import {
 import {
   ArticleService
 } from '../../../core/services/article';
+import { ArticleSummaryPipe } from '../../../shared/pipes/article-summary';
 
 @Component({
   selector: 'app-article-detail',
 
   imports: [
     DatePipe,
-    RouterLink
-  ],
+    RouterLink,
+    AsyncPipe,
+    ArticleSummaryPipe,
+    ArticleCard
+],
 
   templateUrl: './article-detail.html',
   styleUrl: './article-detail.css'
@@ -48,6 +52,8 @@ export class ArticleDetail {
 
   private readonly articleService =
     inject(ArticleService);
+
+  relatedArticles$: Observable<Article[]> = of([]);
 
 
   article =
@@ -97,6 +103,22 @@ export class ArticleDetail {
 
   }
 
+  ngOnInit(): void {
+
+  this.route.paramMap
+    .pipe(
+      map(params => params.get('slug')),
+      distinctUntilChanged()
+    )
+    .subscribe(slug => {
+
+      if (slug) {
+        this.loadArticle(slug);
+      }
+
+    });
+}
+
   readingTime = computed(() => {
 
     const article = this.article();
@@ -135,6 +157,13 @@ export class ArticleDetail {
         next: response => {
 
           this.article.set(response);
+
+          this.relatedArticles$ =
+          this.articleService.getRelatedArticles(
+            response.categoryId,
+            response.id
+          );
+
 
           this.isLoading.set(false);
 

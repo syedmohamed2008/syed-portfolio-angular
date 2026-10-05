@@ -1,12 +1,16 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ExternalLink } from '../../shared/directives/external-link';
+import { HoverHighlight } from '../../shared/directives/hover-highlight';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive, 
+    ExternalLink,
+    HoverHighlight
   ],
   templateUrl: './header.html',
   styleUrl: './header.css'
