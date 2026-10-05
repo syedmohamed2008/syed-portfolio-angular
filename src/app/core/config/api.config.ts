@@ -10,7 +10,8 @@ export const API_CONFIG = {
     articles: '/articles',
     categories: '/articles/categories',
     tags: '/articles/tags', 
-    articleBySlug: '/articles/slug'
+    articleBySlug: '/articles/slug',
+     contact: '/contact/messages'
   }
 
 };

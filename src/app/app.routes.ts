@@ -54,9 +54,16 @@ export const routes: Routes = [
         component: ArticleList
       },
       {
-        path: 'articles/:slug',
-        component: ArticleDetail
+         path: 'articles/:slug',
+            loadComponent: () =>
+                import('./features/articles/article-detail/article-detail')
+                .then(m => m.ArticleDetail)
+      },
+      {
+        path: '**',
+        redirectTo: ''
       }
+
 
     ]
   },
@@ -71,12 +78,5 @@ export const routes: Routes = [
       }
     ]
   },
-
-  {
-  path: 'articles/:slug',
-  loadComponent: () =>
-    import('./features/articles/article-detail/article-detail')
-      .then(m => m.ArticleDetail)
-}
 
 ];

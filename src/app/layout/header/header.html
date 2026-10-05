@@ -1,37 +1,51 @@
 <header class="site-header">
 
-    <div class="container header-container">
+    <div class="header-container">
 
-        <a routerLink="/" class="brand" (click)="closeMenu()">
-            JN Tech
+        <!-- Logo / Name -->
+        <a routerLink="/" class="brand">
+            Syed Mohamed
         </a>
 
-        <button type="button" class="menu-button" aria-label="Toggle navigation" (click)="toggleMenu()">
 
-            ☰
+        <!-- Navigation -->
+        <nav class="nav-links">
 
-        </button>
-
-        <nav class="navigation" [class.navigation-open]="isMenuOpen()">
-
-            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                (click)="closeMenu()">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 Home
             </a>
 
-            <a routerLink="/portfolio" routerLinkActive="active" (click)="closeMenu()">
+            <a routerLink="/portfolio" routerLinkActive="active">
                 Portfolio
             </a>
 
-            <a routerLink="/articles" routerLinkActive="active" (click)="closeMenu()">
+            <a routerLink="/articles" routerLinkActive="active">
                 Articles
             </a>
 
-            <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">
+            <a routerLink="/contact" routerLinkActive="active">
                 Contact
             </a>
 
         </nav>
+
+
+        <!-- Social Links -->
+        <div class="header-social">
+
+            <a href="https://www.linkedin.com/in/syed-md" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <i class="bi bi-linkedin"></i>
+            </a>
+
+            <a href="https://github.com/syedmohamed2008" target="_blank" rel="noopener" aria-label="GitHub">
+                <i class="bi bi-github"></i>
+            </a>
+
+            <a href="https://www.youtube.com/@SyedCloudTech" target="_blank" rel="noopener" aria-label="YouTube">
+                <i class="bi bi-youtube"></i>
+            </a>
+
+        </div>
 
     </div>
 

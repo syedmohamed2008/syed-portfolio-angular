@@ -1,1 +1,304 @@
-<p>contact works!</p>
+<section class="contact-page">
+
+    <div class="contact-container">
+
+        <!-- Header -->
+        <div class="contact-header">
+
+            <span class="section-label">
+                CONTACT
+            </span>
+
+            <h1>
+                Contact Me
+            </h1>
+
+            <p>
+                Have a question, project idea, or just want to connect?
+                Feel free to send me a message.
+            </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+            <!-- Contact Form -->
+            <div class="contact-card">
+
+                <h2>
+                    Send Me a Message
+                </h2>
+
+                <p class="card-description">
+                    Fill out the form below and I'll get back to you.
+                </p>
+
+
+                @if (successMessage()) {
+
+                <div class="success-message">
+                    {{ successMessage() }}
+                </div>
+
+                }
+
+
+                @if (errorMessage()) {
+
+                <div class="form-error-message">
+                    {{ errorMessage() }}
+                </div>
+
+                }
+
+
+                <form [formGroup]="contactForm" (ngSubmit)="submit()">
+
+
+                    <!-- Name -->
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Name
+                        </label>
+
+                        <input id="name" type="text" formControlName="name" placeholder="Your name">
+
+
+                        @if (
+                        contactForm.controls.name.touched &&
+                        contactForm.controls.name.invalid
+                        ) {
+
+                        <div class="validation-message">
+
+                            @if (
+                            contactForm.controls.name.hasError('required')
+                            ) {
+                            Name is required.
+                            }
+
+                            @if (
+                            contactForm.controls.name.hasError('maxlength')
+                            ) {
+                            Name cannot exceed 100 characters.
+                            }
+
+                        </div>
+
+                        }
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input id="email" type="email" formControlName="email" placeholder="Your email">
+
+
+                        @if (
+                        contactForm.controls.email.touched &&
+                        contactForm.controls.email.invalid
+                        ) {
+
+                        <div class="validation-message">
+
+                            @if (
+                            contactForm.controls.email.hasError('required')
+                            ) {
+                            Email is required.
+                            }
+
+                            @if (
+                            contactForm.controls.email.hasError('email')
+                            ) {
+                            Enter a valid email address.
+                            }
+
+                        </div>
+
+                        }
+
+                    </div>
+
+
+                    <!-- Message -->
+
+                    <div class="form-group">
+
+                        <label for="message">
+                            Message
+                        </label>
+
+                        <textarea id="message" rows="3" formControlName="message"
+                            placeholder="Write your message..."></textarea>
+
+
+                        @if (
+                        contactForm.controls.message.touched &&
+                        contactForm.controls.message.invalid
+                        ) {
+
+                        <div class="validation-message">
+
+                            @if (
+                            contactForm.controls.message.hasError('required')
+                            ) {
+                            Message is required.
+                            }
+
+                            @if (
+                            contactForm.controls.message.hasError('minlength')
+                            ) {
+                            Message must contain at least 10 characters.
+                            }
+
+                            @if (
+                            contactForm.controls.message.hasError('maxlength')
+                            ) {
+                            Message cannot exceed 2000 characters.
+                            }
+
+                        </div>
+
+                        }
+
+                    </div>
+
+
+                    <button type="submit" class="send-button" [disabled]="isSubmitting()">
+
+                        @if (isSubmitting()) {
+                        Sending...
+                        }
+                        @else {
+                        Send Message
+                        }
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- Contact Information -->
+            <div class="contact-card">
+
+                <h2>
+                    Get In Touch
+                </h2>
+
+                <p class="card-description">
+                    You can also reach me directly or connect through
+                    my social profiles.
+                </p>
+
+
+                <!-- Email -->
+                <div class="contact-section">
+
+                    <h3>
+                        Email
+                    </h3>
+
+                    <a href="mailto:YOUR_EMAIL" class="contact-item">
+
+                        <span class="contact-icon">
+                            ✉
+                        </span>
+
+                        <div>
+                            <strong>Email Me</strong>
+
+                            <span>
+                                mailtosyedmdsalam@gmail.com
+                            </span>
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <!-- Social -->
+                <div class="contact-section">
+
+                    <h3>
+                        Connect With Me
+                    </h3>
+
+
+                    <div class="social-links">
+
+                        <a href="https://www.linkedin.com/in/syed-md" target="_blank" rel="noopener"
+                            class="social-item">
+
+                            <span class="social-icon">
+                                <i class="bi bi-linkedin"></i>
+                            </span>
+
+                            <span>
+                                LinkedIn
+                            </span>
+
+                            <span class="arrow">
+                                →
+                            </span>
+
+                        </a>
+
+
+                        <a href="https://github.com/syedmohamed2008" target="_blank" rel="noopener" class="social-item">
+
+                            <span class="social-icon">
+                                <i class="bi bi-github"></i>
+                            </span>
+
+                            <span>
+                                GitHub
+                            </span>
+
+                            <span class="arrow">
+                                →
+                            </span>
+
+                        </a>
+
+
+                        <a href="https://www.youtube.com/@SyedCloudTech" target="_blank" rel="noopener"
+                            class="social-item">
+
+                            <span class="social-icon">
+                                <i class="bi bi-youtube"></i>
+                            </span>
+
+                            <span>
+                                YouTube
+                            </span>
+
+                            <span class="arrow">
+                                →
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
