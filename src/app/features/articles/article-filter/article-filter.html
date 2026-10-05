@@ -3,7 +3,7 @@
     <input type="search" [formControl]="searchControl" placeholder="Search articles...">
 
 
-    <select [(ngModel)]="categoryId" (change)="onCategoryChange()">
+    <select [(ngModel)]="categoryId"  (ngModelChange)="onCategoryChange($event)">
 
         <option value="">
             All Categories

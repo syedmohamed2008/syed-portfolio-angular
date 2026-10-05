@@ -3,6 +3,7 @@ import {
   DestroyRef,
   inject,
   input,
+  model,
   OnInit,
   output
 } from '@angular/core';
@@ -63,8 +64,7 @@ export class ArticleFilter implements OnInit {
   }>();
 
 
-  categoryChanged =
-    output<string>();
+  categoryChanged = output<string>();
 
 
   searchControl =
@@ -73,7 +73,7 @@ export class ArticleFilter implements OnInit {
     });
 
 
-  categoryId = '';
+  categoryId = model<string>('');
 
   tagId = '';
 
@@ -105,15 +105,21 @@ export class ArticleFilter implements OnInit {
   }
 
 
-  onCategoryChange(): void {
+onCategoryChange(
+  categoryId: string
+): void {
 
-    this.tagId = '';
+  this.categoryId.set(
+    categoryId
+  );
 
-    this.categoryChanged.emit(
-      this.categoryId
-    );
+  this.tagId = '';
 
-  }
+  this.categoryChanged.emit(
+    categoryId
+  );
+
+}
 
 
   searchArticles(): void {
@@ -124,23 +130,22 @@ export class ArticleFilter implements OnInit {
 
   }
 
+private emitFilter(
+  search: string
+): void {
 
-  private emitFilter(
-    search: string
-  ): void {
+  this.filterChanged.emit({
 
-    this.filterChanged.emit({
+    search: search,
 
-      search: search,
+    categoryId: this.categoryId(),
 
-      categoryId: this.categoryId,
+    tagId: this.tagId,
 
-      tagId: this.tagId,
+    sortOrder: this.sortOrder
 
-      sortOrder: this.sortOrder
+  });
 
-    });
-
-  }
+}
 
 }

@@ -16,9 +16,8 @@
         </app-category-cards>
 
 
-        <app-article-filter [categories]="categories()" [tags]="tags()"
+        <app-article-filter [categories]="categories()" [tags]="tags()" [categoryId]="selectedCategoryId()"
             (categoryChanged)="onFilterCategoryChange($event)" (filterChanged)="onFilterChanged($event)">
-
         </app-article-filter>
 
 
