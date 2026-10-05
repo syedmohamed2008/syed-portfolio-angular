@@ -6,12 +6,13 @@ import { provideHttpClient, withInterceptors} from '@angular/common/http';
 
 import { correlationIdInterceptor } from './core/interceptors/correlation-id.interceptor';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
+import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes), 
     provideClientHydration(), 
-    provideHttpClient(withInterceptors([ correlationIdInterceptor, errorInterceptor ]))
+    provideHttpClient(withInterceptors([ correlationIdInterceptor, errorInterceptor, loadingInterceptor ]))
   ]
 };
