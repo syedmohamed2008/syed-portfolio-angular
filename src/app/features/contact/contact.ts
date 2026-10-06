@@ -46,6 +46,20 @@ export class Contact {
     signal('');
 
 
+  canDeactivate(): boolean {
+
+    if (this.contactForm.pristine) {
+
+      return true;
+
+    }
+
+    return confirm(
+      'You have unsaved changes. Do you want to leave this page?'
+    );
+
+  }
+
   contactForm = this.fb.nonNullable.group({
 
     name: [

@@ -23,6 +23,7 @@ import { Dashboard }
 
 import { ArticleDetail }
   from './features/articles/article-detail/article-detail';
+import { unsavedChangesGuard } from './core/guards/unsaved-changes.guard';
 
 export const routes: Routes = [
 
@@ -47,7 +48,11 @@ export const routes: Routes = [
 
       {
         path: 'contact',
-        component: Contact 
+          loadComponent: ()=> import('./features/contact/contact').then(m => m.Contact),
+
+          canDeactivate: [
+            unsavedChangesGuard
+          ]
       }, 
       {
         path: 'articles',
