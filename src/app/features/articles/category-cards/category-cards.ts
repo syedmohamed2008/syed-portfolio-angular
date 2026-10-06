@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -13,7 +14,8 @@ import {
   selector: 'app-category-cards',
 
   templateUrl: './category-cards.html',
-  styleUrl: './category-cards.css'
+  styleUrl: './category-cards.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryCards {
 

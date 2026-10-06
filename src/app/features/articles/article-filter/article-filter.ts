@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   inject,
@@ -41,7 +42,8 @@ import {
   ],
 
   templateUrl: './article-filter.html',
-  styleUrl: './article-filter.css'
+  styleUrl: './article-filter.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArticleFilter implements OnInit {
 

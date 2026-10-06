@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   input
@@ -20,7 +21,8 @@ import { ArticleSummaryPipe } from '../../../shared/pipes/article-summary';
   ],
 
   templateUrl: './article-card.html',
-  styleUrl: './article-card.css'
+  styleUrl: './article-card.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArticleCard {
 

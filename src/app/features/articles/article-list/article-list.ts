@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   HostListener,
@@ -34,7 +35,8 @@ import { ArticleFilter } from '../article-filter/article-filter';
   ],
 
   templateUrl: './article-list.html',
-  styleUrl: './article-list.css'
+  styleUrl: './article-list.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArticleList implements OnInit  {
 
